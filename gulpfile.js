@@ -29,6 +29,13 @@ gulp.task('js', function(){
 // 编译html
 gulp.task('html', function(){
     gulp.src(path.html)
+      .pipe(fileinclude({
+          prefix: '@@',
+          basepath: '@file',
+          context: {
+              OA: 'pc'
+          }
+      }))
       .pipe(gulp.dest('./build/'));
 });
 
