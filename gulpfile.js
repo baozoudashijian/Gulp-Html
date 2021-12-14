@@ -2,13 +2,15 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   watch = require('gulp-watch'),
   browser = require('browser-sync'),
+  fileinclude  = require('gulp-file-include'),
   imagemin = require('gulp-imagemin');
 
 var path = {
     sass: 'src/sass/*.scss',
     js: 'src/js/*.js',
     html: 'src/*.html',
-    image: 'src/image/*.{png,jpg,gif,ico}'
+    image: 'src/image/*.{png,jpg,gif,ico}',
+    pages: 'src/pages/*.html'
 }
 
 // 编译sass
@@ -29,6 +31,12 @@ gulp.task('html', function(){
     gulp.src(path.html)
       .pipe(gulp.dest('./build/'));
 });
+
+gulp.task('pages', function(){
+    gulp.src(path.pages)
+      .pipe(gulp.dest('./build/pages/'));
+});
+
 // 压缩图片
 gulp.task('image', function(){
     gulp.src(path.image)
@@ -45,6 +53,7 @@ gulp.task('serve', function() {
     gulp.watch(DEV + '/js/*.js').on('change', browser.reload)
     gulp.watch(DEV + '/sass/*.scss').on('change', browser.reload)
     gulp.watch(DEV + '/image/*.{png,jpg,gif,ico}').on('change', browser.reload)
+    gulp.watch(DEV + '/pages/*.html').on('change', browser.reload)
 });
 
 gulp.task('watch', function(){
@@ -52,6 +61,7 @@ gulp.task('watch', function(){
     gulp.watch(path.js, ['js']);
     gulp.watch(path.html, ['html']);
     gulp.watch(path.image, ['image']);
+    gulp.watch(path.pages, ['pages']);
 });
 
-gulp.task('default', ['watch', 'serve', 'sass', 'js', 'html', 'image']);
+gulp.task('default', ['watch', 'serve', 'sass', 'js', 'html', 'image', 'pages']);
