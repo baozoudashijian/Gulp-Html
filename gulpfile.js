@@ -5,6 +5,7 @@ var gulp = require('gulp'),
   fileinclude  = require('gulp-file-include'),
   imagemin = require('gulp-imagemin');
 
+
 var path = {
     sass: 'src/sass/*.scss',
     js: 'src/js/*.js',
@@ -13,7 +14,6 @@ var path = {
     pages: 'src/pages/*.html'
 }
 
-console.log(process.env.NODE_ENV, 'env')
 // 编译sass
 gulp.task('sass', function(){
     gulp.src(path.sass)
@@ -71,4 +71,7 @@ gulp.task('watch', function(){
     gulp.watch(path.pages, ['pages']);
 });
 
-gulp.task('default', ['watch', 'serve', 'sass', 'js', 'html', 'image', 'pages']);
+var tastArr = process.env.NODE_ENV == "development" ? ['watch', 'serve', 'sass', 'js', 'html', 'image', 'pages'] : ['sass', 'js', 'html', 'image', 'pages']
+
+// default是gulp执行任务的入口必须存在
+gulp.task('default', tastArr);
