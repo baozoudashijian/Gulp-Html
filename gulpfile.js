@@ -13,6 +13,7 @@ var path = {
     pages: 'src/pages/*.html'
 }
 
+console.log(process.env.NODE_ENV, 'env')
 // 编译sass
 gulp.task('sass', function(){
     gulp.src(path.sass)
