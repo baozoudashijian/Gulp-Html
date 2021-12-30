@@ -14,3 +14,7 @@ gulp-cli: 务必与gulp保持一致
 2、yarn安装依赖
 
 3、再运行yarn start
+
+## 自适应
+
+[demo](https://www.itdaan.com/blog/2017/07/22/4e6f207d84e9.html)
