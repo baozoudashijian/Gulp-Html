@@ -1,0 +1,5 @@
+$font-size-base: 75; //设计稿wdith/10
+
+@function rem($px){
+  @return $px / $font-size-base + rem;
+}
