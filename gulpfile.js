@@ -3,8 +3,12 @@ var gulp = require('gulp'),
   watch = require('gulp-watch'),
   browser = require('browser-sync'),
   fileinclude  = require('gulp-file-include'),
-  imagemin = require('gulp-imagemin');
+  imagemin = require('gulp-imagemin'),
+  replace = require('gulp-replace')
 
+// 不同环境相关配置
+var  public_path = process.env.NODE_ENV == "development" ?  './' : 'https://www.baidu.com/'
+var tastArr = process.env.NODE_ENV == "development" ? ['watch', 'serve', 'sass', 'js', 'html', 'image', 'pages'] : ['sass', 'js', 'html', 'image', 'pages']
 
 var path = {
     sass: 'src/sass/*.scss',
@@ -37,6 +41,7 @@ gulp.task('html', function(){
               OA: 'pc'
           }
       }))
+      .pipe(replace('./',public_path))
       .pipe(gulp.dest('./build/'));
 });
 
@@ -70,8 +75,6 @@ gulp.task('watch', function(){
     gulp.watch(path.image, ['image']);
     gulp.watch(path.pages, ['pages']);
 });
-
-var tastArr = process.env.NODE_ENV == "development" ? ['watch', 'serve', 'sass', 'js', 'html', 'image', 'pages'] : ['sass', 'js', 'html', 'image', 'pages']
 
 // default是gulp执行任务的入口必须存在
 gulp.task('default', tastArr);
