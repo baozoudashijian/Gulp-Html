@@ -1,5 +1,7 @@
+@import "reset";
+@import "var";
 .a {
-  color: red;
+  color: $color-brand;
   .b {
     font-size: 14px;
   }

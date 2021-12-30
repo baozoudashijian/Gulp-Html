@@ -58,7 +58,6 @@ gulp.task('serve', function() {
     });
     gulp.watch(DEV + '/*.html' ).on('change', browser.reload)
     gulp.watch(DEV + '/js/*.js').on('change', browser.reload)
-    gulp.watch(DEV + '/sass/*.scss').on('change', browser.reload)
     gulp.watch(DEV + '/image/*.{png,jpg,gif,ico}').on('change', browser.reload)
     gulp.watch(DEV + '/pages/*.html').on('change', browser.reload)
 });
